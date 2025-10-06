@@ -1,6 +1,6 @@
 package com.calendar.calendar.Entities;
 
-import com.calendar.calendar.repositories.UserRepository;
+import com.calendar.calendar.repositories.UsersRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +12,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest()
 @ExtendWith(SpringExtension.class)
 public class UsersRepositoryIntegrationTest {
-    private UserRepository userRepo;
+    private UsersRepository userRepo;
 
     @Autowired
-    public UsersRepositoryIntegrationTest(UserRepository userRepo) {
+    public UsersRepositoryIntegrationTest(UsersRepository userRepo) {
         this.userRepo = userRepo;
     }
 
