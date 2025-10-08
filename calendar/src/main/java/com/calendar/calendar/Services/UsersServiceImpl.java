@@ -1,22 +1,30 @@
 package com.calendar.calendar.Services;
 
 import com.calendar.calendar.Entities.Users;
+import com.calendar.calendar.UserMapper;
 import com.calendar.calendar.dto.UsersDto;
 import com.calendar.calendar.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class UsersServiceImpl implements UsersService{
 
-    private UsersRepository usersRepository;
+    private final UsersRepository usersRepository;
 
-    public UsersServiceImpl(UsersRepository usersRepository) {
+    @Autowired
+    private UserMapper userMapper;
+
+    public UsersServiceImpl(UsersRepository usersRepository, UserMapper userMapper) {
         this.usersRepository = usersRepository;
+        this.userMapper = userMapper;
     }
 
     @Override
-    public Users createUser(Users user) {
-        return usersRepository.save(user);
+    public Users createUser(UsersDto userDto) {
+        Users u = userMapper.toEntity(userDto);
+        System.out.println(u);
+        return usersRepository.save(userMapper.toEntity(userDto));
     }
 }
