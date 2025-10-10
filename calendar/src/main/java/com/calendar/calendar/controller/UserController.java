@@ -31,4 +31,18 @@ public class UserController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<UsersResponseDto> updateUser(
+            @PathVariable Long id,
+            @RequestBody UsersCreateDto userDto) {
+
+        if (usersService.doesExist(id).isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        userDto.setId(id);
+        UsersResponseDto user = usersService.createUser(userDto);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
 }

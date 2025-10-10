@@ -31,6 +31,11 @@ public class UsersServiceImpl implements UsersService{
     }
 
     @Override
+    public Optional<Users> doesExist(Long id) {
+        return usersRepository.findById(id);
+    }
+
+    @Override
     public Optional<UsersResponseDto> getUser(Long id) {
         return usersRepository.findById(id)
                 .map(user -> userMapper.userEntityToResponseDto(user));
