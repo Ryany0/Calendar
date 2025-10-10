@@ -2,7 +2,7 @@ package com.calendar.calendar.Services;
 
 import com.calendar.calendar.Entities.Users;
 import com.calendar.calendar.UserMapper;
-import com.calendar.calendar.dto.UsersCreateDto;
+import com.calendar.calendar.dto.UsersSaveDto;
 import com.calendar.calendar.dto.UsersResponseDto;
 import com.calendar.calendar.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class UsersServiceImpl implements UsersService{
     }
 
     @Override
-    public UsersResponseDto createUser(UsersCreateDto userDto) {
+    public UsersResponseDto saveUser(UsersSaveDto userDto) {
         Users user = usersRepository.save(userMapper.userCreateDtpToEntity(userDto));
         return userMapper.userEntityToResponseDto(user);
     }

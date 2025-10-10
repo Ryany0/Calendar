@@ -1,7 +1,7 @@
 package com.calendar.calendar.controller;
 
 import com.calendar.calendar.Services.UsersService;
-import com.calendar.calendar.dto.UsersCreateDto;
+import com.calendar.calendar.dto.UsersSaveDto;
 import com.calendar.calendar.dto.UsersResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,8 +19,8 @@ public class UserController {
     }
 
     @PostMapping()
-    public ResponseEntity<UsersResponseDto> createUser(@RequestBody UsersCreateDto userDto) {
-        UsersResponseDto user = usersService.createUser(userDto);
+    public ResponseEntity<UsersResponseDto> createUser(@RequestBody UsersSaveDto userDto) {
+        UsersResponseDto user = usersService.saveUser(userDto);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
@@ -34,14 +34,14 @@ public class UserController {
     @PutMapping("/{id}")
     public ResponseEntity<UsersResponseDto> updateUser(
             @PathVariable Long id,
-            @RequestBody UsersCreateDto userDto) {
+            @RequestBody UsersSaveDto userDto) {
 
         if (usersService.doesExist(id).isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
         userDto.setId(id);
-        UsersResponseDto user = usersService.createUser(userDto);
+        UsersResponseDto user = usersService.saveUser(userDto);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
