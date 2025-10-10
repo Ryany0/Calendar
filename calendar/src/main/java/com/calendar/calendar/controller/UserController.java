@@ -1,8 +1,8 @@
 package com.calendar.calendar.controller;
 
-import com.calendar.calendar.Entities.Users;
 import com.calendar.calendar.Services.UsersService;
 import com.calendar.calendar.dto.UsersCreateDto;
+import com.calendar.calendar.dto.UsersResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +19,13 @@ public class UserController {
     }
 
     @PostMapping()
-    public ResponseEntity<Users> createUser(@RequestBody UsersCreateDto userDto) {
-        Users user = usersService.createUser(userDto);
+    public ResponseEntity<UsersResponseDto> createUser(@RequestBody UsersCreateDto userDto) {
+        UsersResponseDto user = usersService.createUser(userDto);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Users> getUser(@PathVariable Long id) {
+    public ResponseEntity<UsersResponseDto> getUser(@PathVariable Long id) {
         return usersService.getUser(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
