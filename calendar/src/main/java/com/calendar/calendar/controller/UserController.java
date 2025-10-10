@@ -2,13 +2,11 @@ package com.calendar.calendar.controller;
 
 import com.calendar.calendar.Entities.Users;
 import com.calendar.calendar.Services.UsersService;
-import com.calendar.calendar.dto.UsersDto;
+import com.calendar.calendar.dto.UsersCreateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -21,7 +19,7 @@ public class UserController {
     }
 
     @PostMapping()
-    public ResponseEntity<Users> createUser(@RequestBody UsersDto userDto) {
+    public ResponseEntity<Users> createUser(@RequestBody UsersCreateDto userDto) {
         Users user = usersService.createUser(userDto);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }

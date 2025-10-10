@@ -1,13 +1,13 @@
 package com.calendar.calendar;
 
 import com.calendar.calendar.Entities.Users;
-import com.calendar.calendar.dto.UsersDto;
+import com.calendar.calendar.dto.UsersCreateDto;
 import org.mapstruct.Mapper;
 
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
-    Users toEntity(UsersDto usersDto);
+    Users toEntity(UsersCreateDto usersCreateDto);
 
-    UsersDto toDTO(Users user);
+    UsersCreateDto toDTO(Users user);
 }

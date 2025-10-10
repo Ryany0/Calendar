@@ -1,7 +1,7 @@
 package com.calendar.calendar.Services;
 
 import com.calendar.calendar.Entities.Users;
-import com.calendar.calendar.dto.UsersDto;
+import com.calendar.calendar.dto.UsersCreateDto;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -11,5 +11,5 @@ public interface UsersService {
 
     Optional<Users> getUser(Long id);
 
-    Users createUser(UsersDto userDto);
+    Users createUser(UsersCreateDto userDto);
 }
