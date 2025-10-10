@@ -2,6 +2,7 @@ package com.calendar.calendar.Services;
 
 import com.calendar.calendar.Entities.Users;
 import com.calendar.calendar.UserMapper;
+import com.calendar.calendar.dto.UsersPatchDto;
 import com.calendar.calendar.dto.UsersSaveDto;
 import com.calendar.calendar.dto.UsersResponseDto;
 import com.calendar.calendar.repositories.UsersRepository;
@@ -33,6 +34,21 @@ public class UsersServiceImpl implements UsersService{
     @Override
     public Optional<Users> doesExist(Long id) {
         return usersRepository.findById(id);
+    }
+
+    @Override
+    public Optional<UsersResponseDto> partialUpdate(Long id, UsersPatchDto usersDto) {
+        return usersRepository.findById(id).map(
+                existingUser -> {
+                    if (usersDto.getName() != null) existingUser.setName(usersDto.getName());
+                    if (usersDto.getEmail() != null) existingUser.setEmail(usersDto.getEmail());
+                    if (usersDto.getPassword() != null) existingUser.setPassword(usersDto.getPassword());
+
+                    Users updatedUser = usersRepository.save(existingUser);
+
+                    return userMapper.userEntityToResponseDto(updatedUser);
+                }
+        );
     }
 
     @Override
