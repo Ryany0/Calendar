@@ -23,8 +23,6 @@ public class UsersServiceImpl implements UsersService{
 
     @Override
     public Users createUser(UsersDto userDto) {
-        Users u = userMapper.toEntity(userDto);
-        System.out.println(u);
         return usersRepository.save(userMapper.toEntity(userDto));
     }
 }
