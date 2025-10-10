@@ -7,6 +7,8 @@ import com.calendar.calendar.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Service
 public class UsersServiceImpl implements UsersService{
@@ -24,5 +26,10 @@ public class UsersServiceImpl implements UsersService{
     @Override
     public Users createUser(UsersDto userDto) {
         return usersRepository.save(userMapper.toEntity(userDto));
+    }
+
+    @Override
+    public Optional<Users> getUser(Long id) {
+        return usersRepository.findById(id);
     }
 }
