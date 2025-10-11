@@ -1,8 +1,8 @@
 package com.calendar.calendar.mappers;
 
 import com.calendar.calendar.Entities.Users;
-import com.calendar.calendar.dto.UsersSaveDto;
-import com.calendar.calendar.dto.UsersResponseDto;
+import com.calendar.calendar.dto.users.UsersSaveDto;
+import com.calendar.calendar.dto.users.UsersResponseDto;
 import org.mapstruct.Mapper;
 
 

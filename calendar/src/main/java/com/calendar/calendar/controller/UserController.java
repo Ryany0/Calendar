@@ -1,9 +1,9 @@
 package com.calendar.calendar.controller;
 
 import com.calendar.calendar.Services.UsersService;
-import com.calendar.calendar.dto.UsersPatchDto;
-import com.calendar.calendar.dto.UsersSaveDto;
-import com.calendar.calendar.dto.UsersResponseDto;
+import com.calendar.calendar.dto.users.UsersPatchDto;
+import com.calendar.calendar.dto.users.UsersSaveDto;
+import com.calendar.calendar.dto.users.UsersResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

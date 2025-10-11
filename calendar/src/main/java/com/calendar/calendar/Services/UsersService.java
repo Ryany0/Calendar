@@ -1,9 +1,9 @@
 package com.calendar.calendar.Services;
 
 import com.calendar.calendar.Entities.Users;
-import com.calendar.calendar.dto.UsersPatchDto;
-import com.calendar.calendar.dto.UsersSaveDto;
-import com.calendar.calendar.dto.UsersResponseDto;
+import com.calendar.calendar.dto.users.UsersPatchDto;
+import com.calendar.calendar.dto.users.UsersSaveDto;
+import com.calendar.calendar.dto.users.UsersResponseDto;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

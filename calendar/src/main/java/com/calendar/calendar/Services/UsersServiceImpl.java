@@ -2,9 +2,9 @@ package com.calendar.calendar.Services;
 
 import com.calendar.calendar.Entities.Users;
 import com.calendar.calendar.mappers.UserMapper;
-import com.calendar.calendar.dto.UsersPatchDto;
-import com.calendar.calendar.dto.UsersSaveDto;
-import com.calendar.calendar.dto.UsersResponseDto;
+import com.calendar.calendar.dto.users.UsersPatchDto;
+import com.calendar.calendar.dto.users.UsersSaveDto;
+import com.calendar.calendar.dto.users.UsersResponseDto;
 import com.calendar.calendar.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

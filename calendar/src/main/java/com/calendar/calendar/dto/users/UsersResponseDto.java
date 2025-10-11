@@ -1,4 +1,5 @@
-package com.calendar.calendar.dto;
+package com.calendar.calendar.dto.users;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UsersPatchDto {
-    private String email;
+public class UsersResponseDto {
+    private Long id;
     private String name;
-    private String password;
+
 }
