@@ -1,6 +1,6 @@
 package com.calendar.calendar.controller;
 
-import com.calendar.calendar.Services.UsersService;
+import com.calendar.calendar.Services.users.UsersService;
 import com.calendar.calendar.dto.users.UsersPatchDto;
 import com.calendar.calendar.dto.users.UsersSaveDto;
 import com.calendar.calendar.dto.users.UsersResponseDto;

@@ -1,4 +1,4 @@
-package com.calendar.calendar.Services;
+package com.calendar.calendar.Services.users;
 
 import com.calendar.calendar.Entities.Users;
 import com.calendar.calendar.dto.users.UsersPatchDto;

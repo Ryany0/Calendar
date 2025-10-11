@@ -27,13 +27,12 @@ public class Event {
     private Boolean completed = false;
 
     @Column(nullable = false)
-    private String Title;
+    private String title;
 
     private String content;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "users_id")
-    @Column(nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "users_id", nullable = false)
     private Users users;
 
 
