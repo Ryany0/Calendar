@@ -1,4 +1,4 @@
-package com.calendar.calendar;
+package com.calendar.calendar.mappers;
 
 import com.calendar.calendar.Entities.Users;
 import com.calendar.calendar.dto.UsersSaveDto;

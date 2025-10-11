@@ -1,7 +1,7 @@
 package com.calendar.calendar.Services;
 
 import com.calendar.calendar.Entities.Users;
-import com.calendar.calendar.UserMapper;
+import com.calendar.calendar.mappers.UserMapper;
 import com.calendar.calendar.dto.UsersPatchDto;
 import com.calendar.calendar.dto.UsersSaveDto;
 import com.calendar.calendar.dto.UsersResponseDto;
