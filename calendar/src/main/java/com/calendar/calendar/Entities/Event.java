@@ -1,10 +1,7 @@
 package com.calendar.calendar.Entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -23,13 +20,20 @@ public class Event {
 
     private LocalTime startTime;
     private LocalTime endTime;
+
+    @Column(nullable = false)
     private LocalDate taskDate;
-    private Boolean completed;
+
+    private Boolean completed = false;
+
+    @Column(nullable = false)
     private String Title;
+
     private String content;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "users_id")
+    @Column(nullable = false)
     private Users users;
 
 
