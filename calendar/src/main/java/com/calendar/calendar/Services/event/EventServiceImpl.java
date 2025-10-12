@@ -8,6 +8,7 @@ import com.calendar.calendar.repositories.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -32,6 +33,12 @@ public class EventServiceImpl implements EventService{
     @Override
     public List<EventResponseDto> getAllEvents(Long id) {
         List<Event> events = eventRepository.findAllEventsByUserId(id);
+        return eventMapper.entityListToEventResponseDtoList(events);
+    }
+
+    @Override
+    public Iterable<EventResponseDto> getEventsInDay(Long id, LocalDate date) {
+        List<Event> events = eventRepository.getEventsInDayByUserId(id, date);
         return eventMapper.entityListToEventResponseDtoList(events);
     }
 }

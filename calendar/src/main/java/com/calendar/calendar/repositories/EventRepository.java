@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -15,4 +16,10 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             nativeQuery = true
     )
     List<Event> findAllEventsByUserId(Long id);
+
+    @Query(
+            value = "SELECT * FROM event WHERE users_id = ? AND task_date = ?",
+            nativeQuery = true
+    )
+    List<Event> getEventsInDayByUserId(Long id, LocalDate date);
 }
