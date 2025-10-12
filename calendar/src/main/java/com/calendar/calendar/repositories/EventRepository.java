@@ -21,5 +21,11 @@ public interface EventRepository extends JpaRepository<Event, Long> {
             value = "SELECT * FROM event WHERE users_id = ? AND task_date = ?",
             nativeQuery = true
     )
-    List<Event> getEventsInDayByUserId(Long id, LocalDate date);
+    List<Event> findEventsInDay(Long id, LocalDate date);
+
+    @Query(
+            value = "SELECT * FROM event WHERE users_id = ? AND task_date >= ? AND task_date < ?",
+            nativeQuery = true
+    )
+    List<Event> findEventsInMonth(Long id, LocalDate startOfMonth, LocalDate endOfMonth);
 }

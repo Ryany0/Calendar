@@ -1,11 +1,10 @@
 package com.calendar.calendar.controller;
 
 import com.calendar.calendar.Services.event.EventService;
+import com.calendar.calendar.dto.event.EventDayTimeDto;
 import com.calendar.calendar.dto.event.EventResponseDto;
 import com.calendar.calendar.dto.event.EventSaveDto;
 import com.calendar.calendar.dto.users.UserIdDto;
-import com.sun.tools.jconsole.JConsoleContext;
-import org.mapstruct.control.MappingControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +36,7 @@ public class EventController {
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
 
-    @GetMapping("/{date}")
+    @GetMapping("/day")
     public ResponseEntity<Iterable<EventResponseDto>> getEventsInDay(
             @PathVariable LocalDate date,
             @RequestBody UserIdDto userIdDto) {
@@ -45,13 +44,13 @@ public class EventController {
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
 
-//    @GetMapping("/{month}")
-//    public ResponseEntity<EventResponseDto> getTasksInMonth(
-//            @PathVariable int month,
-//            @RequestBody EventSaveDto) {
-//
-//        return new ResponseEntity<>()
-//    }
+
+    @GetMapping("/month")
+    public ResponseEntity<Iterable<EventResponseDto>> getEventsInMonth(
+            @RequestBody EventDayTimeDto eventDayTimeDto) {
+        Iterable<EventResponseDto> events = eventService.getEventsInMonth(eventDayTimeDto);
+        return new ResponseEntity<>(events, HttpStatus.OK);
+    }
 
 
 }
