@@ -5,9 +5,13 @@ import com.calendar.calendar.dto.event.EventResponseDto;
 import com.calendar.calendar.dto.event.EventSaveDto;
 import org.mapstruct.Mapper;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface EventMapper {
     Event createDtoToEntity(EventSaveDto eventDto);
 
     EventResponseDto entityToEventResponseDto(Event event);
+
+    List<EventResponseDto> entityListToEventResponseDtoList(List<Event> events);
 }
