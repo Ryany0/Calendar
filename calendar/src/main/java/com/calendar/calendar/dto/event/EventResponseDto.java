@@ -13,7 +13,7 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @Builder
 public class EventResponseDto {
-
+    private Long id;
     private LocalTime startTime;
     private LocalTime endTime;
     private LocalDate taskDate;

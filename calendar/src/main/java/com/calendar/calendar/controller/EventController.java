@@ -2,6 +2,7 @@ package com.calendar.calendar.controller;
 
 import com.calendar.calendar.Services.event.EventService;
 import com.calendar.calendar.dto.event.EventDayTimeDto;
+import com.calendar.calendar.dto.event.EventIdDto;
 import com.calendar.calendar.dto.event.EventResponseDto;
 import com.calendar.calendar.dto.event.EventSaveDto;
 import com.calendar.calendar.dto.users.UserIdDto;
@@ -49,6 +50,14 @@ public class EventController {
             @RequestBody EventDayTimeDto eventDayTimeDto) {
         Iterable<EventResponseDto> events = eventService.getEventsInMonth(eventDayTimeDto);
         return new ResponseEntity<>(events, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{eventId}/delete")
+    public ResponseEntity<HttpStatus> deleteEvent(
+            @PathVariable Long eventId,
+            @RequestBody UserIdDto userIdDto) {
+        eventService.deleteEvent(userIdDto, eventId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 
