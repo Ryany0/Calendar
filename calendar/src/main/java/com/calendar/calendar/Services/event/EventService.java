@@ -13,7 +13,7 @@ public interface EventService {
 
     Iterable<EventResponseDto> getAllEvents(Long id);
 
-    Iterable<EventResponseDto> getEventsInDay(Long id, LocalDate date);
+    Iterable<EventResponseDto> getEventsInDay(EventDayTimeDto eventDayTimeDto);
 
     Iterable<EventResponseDto> getEventsInMonth(EventDayTimeDto eventDayTimeDto);
 }

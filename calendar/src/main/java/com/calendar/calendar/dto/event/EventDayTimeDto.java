@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 
 
 @Data
@@ -14,5 +13,7 @@ import java.time.LocalDate;
 @Builder
 public class EventDayTimeDto {
     private Long id;
-    private LocalDate date;
+    private int year;
+    private int month;
+    private int day;
 }

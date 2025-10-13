@@ -38,9 +38,8 @@ public class EventController {
 
     @GetMapping("/day")
     public ResponseEntity<Iterable<EventResponseDto>> getEventsInDay(
-            @PathVariable LocalDate date,
-            @RequestBody UserIdDto userIdDto) {
-        Iterable<EventResponseDto> events = eventService.getEventsInDay(userIdDto.getId(), date);
+            @RequestBody EventDayTimeDto eventDayTimeDto) {
+        Iterable<EventResponseDto> events = eventService.getEventsInDay(eventDayTimeDto);
         return new ResponseEntity<>(events, HttpStatus.OK);
     }
 
