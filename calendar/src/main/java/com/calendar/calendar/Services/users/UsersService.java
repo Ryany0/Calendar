@@ -17,5 +17,5 @@ public interface UsersService {
 
     Optional<Users> doesExist(Long id);
 
-    Optional<UsersResponseDto> partialUpdate(Long id, UsersPatchDto usersDto);
+    UsersResponseDto partialUpdate(Long id, UsersPatchDto usersDto);
 }

@@ -8,8 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/event")
 public class EventController {
@@ -54,8 +52,8 @@ public class EventController {
             @PathVariable Long eventId,
             @RequestBody EventUpdateDto eventUpdateDto
             ) {
-        Optional<EventResponseDto> updatedEvent = eventService.updateEvent(eventId, eventUpdateDto);
-        return updatedEvent.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        EventResponseDto updatedEvent = eventService.updateEvent(eventId, eventUpdateDto);
+        return new ResponseEntity<>(updatedEvent, HttpStatus.OK);
     }
 
     @DeleteMapping("/{eventId}/delete")

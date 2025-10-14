@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -53,8 +52,8 @@ public class UserController {
             @PathVariable Long id,
             @RequestBody UsersPatchDto usersDto){
 
-        Optional<UsersResponseDto> user = usersService.partialUpdate(id, usersDto);
-        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        UsersResponseDto user = usersService.partialUpdate(id, usersDto);
+        return new ResponseEntity<>(user, HttpStatus.OK);
 
     }
 

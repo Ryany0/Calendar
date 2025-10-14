@@ -1,6 +1,7 @@
 package com.calendar.calendar.Services.users;
 
 import com.calendar.calendar.Entities.Users;
+import com.calendar.calendar.exception.ResourceNotFound;
 import com.calendar.calendar.mappers.UserMapper;
 import com.calendar.calendar.dto.users.UsersPatchDto;
 import com.calendar.calendar.dto.users.UsersSaveDto;
@@ -37,7 +38,7 @@ public class UsersServiceImpl implements UsersService{
     }
 
     @Override
-    public Optional<UsersResponseDto> partialUpdate(Long id, UsersPatchDto usersDto) {
+    public UsersResponseDto partialUpdate(Long id, UsersPatchDto usersDto) {
         return usersRepository.findById(id).map(
                 existingUser -> {
                     if (usersDto.getName() != null) existingUser.setName(usersDto.getName());
@@ -48,7 +49,7 @@ public class UsersServiceImpl implements UsersService{
 
                     return userMapper.userEntityToResponseDto(updatedUser);
                 }
-        );
+        ).orElseThrow(() -> new ResourceNotFound("Could not find user of id: " + id));
     }
 
     @Override

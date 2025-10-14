@@ -7,8 +7,6 @@ import com.calendar.calendar.dto.event.EventUpdateDto;
 import com.calendar.calendar.dto.users.UserIdDto;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public interface EventService {
     EventResponseDto createEvent(EventSaveDto eventDto);
@@ -21,5 +19,5 @@ public interface EventService {
 
     void deleteEvent(UserIdDto userIdDto, Long eventId);
 
-    Optional<EventResponseDto> updateEvent(Long eventId, EventUpdateDto eventUpdateDto);
+    EventResponseDto updateEvent(Long eventId, EventUpdateDto eventUpdateDto);
 }

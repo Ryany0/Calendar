@@ -6,6 +6,7 @@ import com.calendar.calendar.dto.event.EventResponseDto;
 import com.calendar.calendar.dto.event.EventSaveDto;
 import com.calendar.calendar.dto.event.EventUpdateDto;
 import com.calendar.calendar.dto.users.UserIdDto;
+import com.calendar.calendar.exception.ResourceNotFound;
 import com.calendar.calendar.mappers.EventMapper;
 import com.calendar.calendar.repositories.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class EventServiceImpl implements EventService{
@@ -31,7 +31,6 @@ public class EventServiceImpl implements EventService{
     @Override
     public EventResponseDto createEvent(EventSaveDto eventDto) {
         Event event = eventRepository.save(eventMapper.createDtoToEntity(eventDto));
-        System.out.println(event.toString());
         return eventMapper.entityToEventResponseDto(event);
     }
 
@@ -63,7 +62,7 @@ public class EventServiceImpl implements EventService{
     }
 
     @Override
-    public Optional<EventResponseDto> updateEvent(Long eventId, EventUpdateDto eventUpdateDto) {
+    public EventResponseDto updateEvent(Long eventId, EventUpdateDto eventUpdateDto) {
         return eventRepository.findById(eventId).map(
                 existingEvent -> {
                     if (eventUpdateDto.getTitle() != null) existingEvent.setTitle(eventUpdateDto.getTitle());
@@ -76,6 +75,6 @@ public class EventServiceImpl implements EventService{
                     Event updatedEvent =  eventRepository.save(existingEvent);
                     return eventMapper.entityToEventResponseDto(updatedEvent);
                 }
-        );
+        ).orElseThrow(() -> new ResourceNotFound("Could not find event of id: " + eventId));
     }
 }
