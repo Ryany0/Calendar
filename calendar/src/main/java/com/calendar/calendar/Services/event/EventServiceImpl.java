@@ -4,6 +4,7 @@ import com.calendar.calendar.Entities.Event;
 import com.calendar.calendar.dto.event.EventDayTimeDto;
 import com.calendar.calendar.dto.event.EventResponseDto;
 import com.calendar.calendar.dto.event.EventSaveDto;
+import com.calendar.calendar.dto.event.EventUpdateDto;
 import com.calendar.calendar.dto.users.UserIdDto;
 import com.calendar.calendar.mappers.EventMapper;
 import com.calendar.calendar.repositories.EventRepository;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EventServiceImpl implements EventService{
@@ -58,5 +60,22 @@ public class EventServiceImpl implements EventService{
     @Override
     public void deleteEvent(UserIdDto userIdDto, Long eventId) {
         eventRepository.deleteEventById(userIdDto.getId(), eventId);
+    }
+
+    @Override
+    public Optional<EventResponseDto> updateEvent(Long eventId, EventUpdateDto eventUpdateDto) {
+        return eventRepository.findById(eventId).map(
+                existingEvent -> {
+                    if (eventUpdateDto.getTitle() != null) existingEvent.setTitle(eventUpdateDto.getTitle());
+                    if (eventUpdateDto.getCompleted() != null) existingEvent.setCompleted(eventUpdateDto.getCompleted());
+                    if (eventUpdateDto.getContent() != null) existingEvent.setContent(eventUpdateDto.getContent());
+                    if (eventUpdateDto.getStartTime() != null) existingEvent.setStartTime(eventUpdateDto.getStartTime());
+                    if (eventUpdateDto.getEndTime() != null) existingEvent.setEndTime(eventUpdateDto.getEndTime());
+                    if (eventUpdateDto.getTaskDate() != null) existingEvent.setTaskDate(eventUpdateDto.getTaskDate());
+
+                    Event updatedEvent =  eventRepository.save(existingEvent);
+                    return eventMapper.entityToEventResponseDto(updatedEvent);
+                }
+        );
     }
 }

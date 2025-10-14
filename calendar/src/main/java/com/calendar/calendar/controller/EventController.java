@@ -1,17 +1,14 @@
 package com.calendar.calendar.controller;
 
 import com.calendar.calendar.Services.event.EventService;
-import com.calendar.calendar.dto.event.EventDayTimeDto;
-import com.calendar.calendar.dto.event.EventIdDto;
-import com.calendar.calendar.dto.event.EventResponseDto;
-import com.calendar.calendar.dto.event.EventSaveDto;
+import com.calendar.calendar.dto.event.*;
 import com.calendar.calendar.dto.users.UserIdDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/event")
@@ -50,6 +47,15 @@ public class EventController {
             @RequestBody EventDayTimeDto eventDayTimeDto) {
         Iterable<EventResponseDto> events = eventService.getEventsInMonth(eventDayTimeDto);
         return new ResponseEntity<>(events, HttpStatus.OK);
+    }
+
+    @PatchMapping("/{eventId}/update")
+    public ResponseEntity<EventResponseDto> updateEvent(
+            @PathVariable Long eventId,
+            @RequestBody EventUpdateDto eventUpdateDto
+            ) {
+        Optional<EventResponseDto> updatedEvent = eventService.updateEvent(eventId, eventUpdateDto);
+        return updatedEvent.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{eventId}/delete")
